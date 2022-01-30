@@ -11,7 +11,7 @@ class ShowUserProfileUseCase {
   execute({ user_id }: IRequest): User {
     const userAlreadyExists = this.usersRepository.findById(user_id);
 
-    if (userAlreadyExists) {
+    if (!userAlreadyExists) {
       throw new Error("User already exists");
     };
 
