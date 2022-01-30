@@ -23,14 +23,17 @@ class UsersRepository implements IUsersRepository {
 
     Object.assign(user, {
       name,
-      email
+      email,
+      created_at: new Date()
     });
 
     this.users.push(user);
   }
 
-  findById(id: string): User | undefined {
-    // Complete aqui
+  findById(id: string): User {
+    const user = this.users.find((emailId) => emailId.id === id);
+
+    return user;
   }
 
   findByEmail(email: string): User {
@@ -44,7 +47,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   list(): User[] {
-    // Complete aqui
+    return this.users;
   }
 }
 
