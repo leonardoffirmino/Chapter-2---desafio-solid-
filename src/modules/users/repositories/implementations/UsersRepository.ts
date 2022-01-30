@@ -18,16 +18,21 @@ class UsersRepository implements IUsersRepository {
     return UsersRepository.INSTANCE;
   }
 
-  create({ name, email }: ICreateUserDTO): void {
+  create({ name, email }: ICreateUserDTO): User {
     const user: User = new User();
 
     Object.assign(user, {
       name,
       email,
-      created_at: new Date()
+      admin: false,
+      created_at: new Date(),
+      updated_at: new Date()
+
     });
 
     this.users.push(user);
+
+    return user;
   }
 
   findById(id: string): User {
@@ -43,7 +48,12 @@ class UsersRepository implements IUsersRepository {
   }
 
   turnAdmin(receivedUser: User): User {
-    // Complete aqui
+    Object.assign(receivedUser, {
+      admin: true,
+      updated_at: new Date(),
+    });
+
+    return receivedUser;
   }
 
   list(): User[] {
