@@ -24,7 +24,6 @@ class UsersRepository implements IUsersRepository {
     Object.assign(user, {
       name,
       email,
-      admin: false,
       created_at: new Date(),
       updated_at: new Date()
 
@@ -35,13 +34,13 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  findById(id: string): User {
+  findById(id: string): User | undefined {
     const user = this.users.find((emailId) => emailId.id === id);
 
     return user;
   }
 
-  findByEmail(email: string): User {
+  findByEmail(email: string): User | undefined {
     const user = this.users.find((user) => user.email === email);
 
     return user;
