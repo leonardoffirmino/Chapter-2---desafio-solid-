@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Desafio Ignite Solid",
+    "description": "API Documentation Solid Ignite",
+    "version": "1.0.0",
+    "contact": {
+      "email": "leonardo@rocketseat.com.br"
+    }
+  }
+}
