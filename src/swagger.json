@@ -7,5 +7,37 @@
     "contact": {
       "email": "leonardo@rocketseat.com.br"
     }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user",
+        "description": "Create a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Create new user sample",
+                  "description": "Create description user sample"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
