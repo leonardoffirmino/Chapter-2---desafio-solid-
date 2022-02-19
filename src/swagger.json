@@ -5,7 +5,9 @@
     "description": "API Documentation Solid Ignite",
     "version": "1.0.0",
     "contact": {
-      "email": "leonardo@rocketseat.com.br"
+      "name": "Leonardo Ferreira",
+      "email": "leonardo@rocketseat.com.br",
+      "url": "https://github.com/leonardoffirmino"
     }
   },
   "paths": {
@@ -17,6 +19,7 @@
         "summary": "Create a new user",
         "description": "Create a new user",
         "requestBody": {
+          "description": "Campos obrigatorios para criação de usuário",
           "content": {
             "application/json": {
               "schema": {
@@ -25,18 +28,171 @@
                   "name": {
                     "type": "string"
                   },
-                  "description": {
+                  "email": {
                     "type": "string"
                   }
                 },
                 "example": {
-                  "name": "Create new user sample",
-                  "description": "Create description user sample"
+                  "name": "Name Sample",
+                  "email": "oi@teste.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created user success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "e2751ac2-8f89-11ec-b909-0242ac120002",
+                    "admin": false,
+                    "created_at": "2022-02-16T21:36:44.130Z",
+                    "updated_at": "2022-02-16T21:36:44.130Z",
+                    "name": "Jones Back",
+                    "email": "jonesback@rocketseat.com"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error created user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User not found"
                 }
               }
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List all users",
+        "description": "List all users in the  application",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "admin": {
+                        "type": "boolean"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "exmaple": [
+                    {
+                      "admin": true,
+                      "id": "d1d15581-ad53-4071-a27d-43edfe147ff8",
+                      "name": "Test in test",
+                      "email": "test@test.com",
+                      "created_at": "2022-02-14T21:36:44.130Z",
+                      "updated_at": "2022-02-18T21:44:44.130Z"
+                    },
+                    {
+                      "admin": false,
+                      "id": "f7e6979b-7788-48c3-afb0-cc10f9508dad",
+                      "name": "Test in test 2",
+                      "email": "test@test2.com",
+                      "created_at": "2022-02-11T18:36:44.130Z",
+                      "updated_at": "2022-02-18T23:44:44.130Z"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "User not found application",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": "string"
+                },
+                "example": {
+                  "error": "User not found in the application"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Return specific user"
       }
     }
   }
