@@ -262,7 +262,7 @@
         }
       }
     },
-    "/user/{user_id}/admin": {
+    "/users/{user_id}/admin": {
       "patch": {
         "tags": [
           "Users"
